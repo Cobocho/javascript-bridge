@@ -20,7 +20,7 @@ class BridgeController {
   }
 
   #createBridgeGame() {
-    return this.#handleError(() => {
+    this.#handleError(() => {
       this.#readBridgeSize((size) => {
         const bridgeGame = this.#service.bridge.createBridgeGame(Number(size));
         this.#processGame(bridgeGame);

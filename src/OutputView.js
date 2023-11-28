@@ -5,10 +5,8 @@ const MESSAGES = require('./constants/messages.js');
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 const OutputView = {
-  printer: Console.print,
-
   printWelcome() {
-    this.printer(MESSAGES.welcome);
+    Console.print(MESSAGES.welcome);
   },
   /**
    * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -21,9 +19,9 @@ const OutputView = {
     const width = log[0].length;
     Array.from({ length: width }, (_, idx) => {
       const lane = log.map((logItem) => logItem[idx]);
-      return this.printer(`[ ${lane.join(' | ')} ]`);
+      return Console.print(`[ ${lane.join(' | ')} ]`);
     });
-    this.printer('\n');
+    Console.print('\n');
   },
 
   /**
@@ -36,10 +34,10 @@ const OutputView = {
    * @param root0.log
    */
   printResult({ success, tryCount, log }) {
-    this.printer(MESSAGES.result);
+    Console.print(MESSAGES.result);
     this.printMap(log);
-    this.printer(success ? MESSAGES.success : MESSAGES.failed);
-    this.printer(`${MESSAGES.tryCount} ${tryCount}`);
+    Console.print(success ? MESSAGES.success : MESSAGES.failed);
+    Console.print(`${MESSAGES.tryCount} ${tryCount}`);
   },
 };
 

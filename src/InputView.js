@@ -5,14 +5,13 @@ const MESSAGES = require('./constants/messages.js');
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 const InputView = {
-  reader: Console.readLine,
   /**
    * 다리의 길이를 입력받는다.
    * @param {Function} handler
    * @returns {string}
    */
   readBridgeSize(handler) {
-    return this.reader(MESSAGES.bridgeSize, handler);
+    return Console.readLine(MESSAGES.bridgeSize, handler);
   },
 
   /**
@@ -21,7 +20,7 @@ const InputView = {
    * @returns {string}
    */
   readMoving(handler) {
-    return this.reader(MESSAGES.moving, handler);
+    return Console.readLine(MESSAGES.moving, handler);
   },
 
   /**
@@ -30,7 +29,7 @@ const InputView = {
    * @returns {string}
    */
   readGameCommand(handler) {
-    return this.reader(MESSAGES.retry, handler);
+    return Console.readLine(MESSAGES.retry, handler);
   },
 };
 
