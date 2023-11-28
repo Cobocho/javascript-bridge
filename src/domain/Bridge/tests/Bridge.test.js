@@ -7,19 +7,19 @@ describe('Bridge 테스트', () => {
     {
       stacks: [
         Stack.of([
-          { name: 'U', deck: HardDeck.of() },
-          { name: 'L', deck: WeakDeck.of() },
+          { name: Bridge.LANE_NAMES.up, deck: HardDeck.of() },
+          { name: Bridge.LANE_NAMES.down, deck: WeakDeck.of() },
         ]),
         Stack.of([
-          { name: 'U', deck: WeakDeck.of() },
-          { name: 'L', deck: HardDeck.of() },
+          { name: Bridge.LANE_NAMES.up, deck: WeakDeck.of() },
+          { name: Bridge.LANE_NAMES.down, deck: HardDeck.of() },
         ]),
         Stack.of([
-          { name: 'U', deck: HardDeck.of() },
-          { name: 'L', deck: WeakDeck.of() },
+          { name: Bridge.LANE_NAMES.up, deck: HardDeck.of() },
+          { name: Bridge.LANE_NAMES.down, deck: WeakDeck.of() },
         ]),
       ],
-      throughLanes: ['U', 'L', 'U'],
+      throughLanes: [Bridge.LANE_NAMES.up, Bridge.LANE_NAMES.down, Bridge.LANE_NAMES.up],
       expected: {
         result: true,
         log: [
@@ -32,15 +32,15 @@ describe('Bridge 테스트', () => {
     {
       stacks: [
         Stack.of([
-          { name: 'U', deck: HardDeck.of() },
-          { name: 'L', deck: WeakDeck.of() },
+          { name: Bridge.LANE_NAMES.up, deck: HardDeck.of() },
+          { name: Bridge.LANE_NAMES.down, deck: WeakDeck.of() },
         ]),
         Stack.of([
-          { name: 'U', deck: HardDeck.of() },
-          { name: 'L', deck: WeakDeck.of() },
+          { name: Bridge.LANE_NAMES.up, deck: HardDeck.of() },
+          { name: Bridge.LANE_NAMES.down, deck: WeakDeck.of() },
         ]),
       ],
-      throughLanes: ['L'],
+      throughLanes: [Bridge.LANE_NAMES.down],
       expected: {
         result: false,
         log: [[' ', 'X']],
@@ -67,33 +67,33 @@ describe('Bridge 테스트', () => {
     {
       stacks: [
         Stack.of([
-          { name: 'U', deck: HardDeck.of() },
-          { name: 'L', deck: WeakDeck.of() },
+          { name: Bridge.LANE_NAMES.up, deck: HardDeck.of() },
+          { name: Bridge.LANE_NAMES.down, deck: WeakDeck.of() },
         ]),
         Stack.of([
-          { name: 'U', deck: HardDeck.of() },
-          { name: 'L', deck: WeakDeck.of() },
+          { name: Bridge.LANE_NAMES.up, deck: HardDeck.of() },
+          { name: Bridge.LANE_NAMES.down, deck: WeakDeck.of() },
         ]),
         Stack.of([
-          { name: 'U', deck: HardDeck.of() },
-          { name: 'L', deck: WeakDeck.of() },
+          { name: Bridge.LANE_NAMES.up, deck: HardDeck.of() },
+          { name: Bridge.LANE_NAMES.down, deck: WeakDeck.of() },
         ]),
       ],
-      throughLanes: ['U', 'U', 'U'],
+      throughLanes: [Bridge.LANE_NAMES.up, Bridge.LANE_NAMES.up, Bridge.LANE_NAMES.up],
       expected: true,
     },
     {
       stacks: [
         Stack.of([
-          { name: 'U', deck: HardDeck.of() },
-          { name: 'L', deck: WeakDeck.of() },
+          { name: Bridge.LANE_NAMES.up, deck: HardDeck.of() },
+          { name: Bridge.LANE_NAMES.down, deck: WeakDeck.of() },
         ]),
         Stack.of([
-          { name: 'U', deck: HardDeck.of() },
-          { name: 'L', deck: WeakDeck.of() },
+          { name: Bridge.LANE_NAMES.up, deck: HardDeck.of() },
+          { name: Bridge.LANE_NAMES.down, deck: WeakDeck.of() },
         ]),
       ],
-      throughLanes: ['L'],
+      throughLanes: [Bridge.LANE_NAMES.down],
       expected: false,
     },
   ])('`isCompleted` 호출시 완료 여부를 반환한다.', ({ stacks, throughLanes, expected }) => {

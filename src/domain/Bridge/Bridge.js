@@ -2,6 +2,14 @@ const Stack = require('../Stack/Stack.js');
 
 class Bridge {
   /**
+   * @readonly
+   */
+  static LANE_NAMES = {
+    up: 'U',
+    down: 'D',
+  };
+
+  /**
    * @type {Stack[]}
    */
   #stacks;

@@ -1,14 +1,15 @@
 const { HardDeck, WeakDeck } = require('../../Deck/index.js');
 const Stack = require('../Stack.js');
+const Bridge = require('../../Bridge/Bridge.js');
 
 describe('Stack 테스트', () => {
   it.each([
     {
       decks: [
-        { name: 'U', deck: HardDeck.of() },
-        { name: 'L', deck: WeakDeck.of() },
+        { name: Bridge.LANE_NAMES.up, deck: HardDeck.of() },
+        { name: Bridge.LANE_NAMES.down, deck: WeakDeck.of() },
       ],
-      throughLane: 'U',
+      throughLane: Bridge.LANE_NAMES.up,
       expected: {
         result: true,
         stacks: ['O', ' '],
@@ -16,10 +17,10 @@ describe('Stack 테스트', () => {
     },
     {
       decks: [
-        { name: 'U', deck: WeakDeck.of() },
-        { name: 'L', deck: HardDeck.of() },
+        { name: Bridge.LANE_NAMES.up, deck: WeakDeck.of() },
+        { name: Bridge.LANE_NAMES.down, deck: HardDeck.of() },
       ],
-      throughLane: 'U',
+      throughLane: Bridge.LANE_NAMES.up,
       expected: {
         result: false,
         stacks: ['X', ' '],
@@ -27,10 +28,10 @@ describe('Stack 테스트', () => {
     },
     {
       decks: [
-        { name: 'U', deck: WeakDeck.of() },
-        { name: 'L', deck: HardDeck.of() },
+        { name: Bridge.LANE_NAMES.up, deck: WeakDeck.of() },
+        { name: Bridge.LANE_NAMES.down, deck: HardDeck.of() },
       ],
-      throughLane: 'L',
+      throughLane: Bridge.LANE_NAMES.down,
       expected: {
         result: true,
         stacks: [' ', 'O'],
@@ -38,10 +39,10 @@ describe('Stack 테스트', () => {
     },
     {
       decks: [
-        { name: 'U', deck: HardDeck.of() },
-        { name: 'L', deck: WeakDeck.of() },
+        { name: Bridge.LANE_NAMES.up, deck: HardDeck.of() },
+        { name: Bridge.LANE_NAMES.down, deck: WeakDeck.of() },
       ],
-      throughLane: 'L',
+      throughLane: Bridge.LANE_NAMES.down,
       expected: {
         result: false,
         stacks: [' ', 'X'],
