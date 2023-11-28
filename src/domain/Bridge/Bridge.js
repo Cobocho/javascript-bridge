@@ -56,6 +56,8 @@ class Bridge {
 
   init() {
     this.#stacks.forEach((stack) => stack.init());
+    this.#index = 0;
+    this.#log = [];
   }
 }
 
