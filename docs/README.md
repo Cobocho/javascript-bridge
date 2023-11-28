@@ -14,13 +14,22 @@
 - [x] `cross` 호출시 입력받은 `lane`을 `through`한다.
 - [x] `isCompleted` 호출시 완료 여부를 반환한다.
 
+[ ] Bridge 예외 처리
+
+- [ ] `stacks`에 `length`가 3~20이 아닌 값이 들어올 시 에러가 발생한다.
+- [ ] `cross` 호출시 입력받은 `lane`이 스택에 없으면 에러가 발생한다.
+
 [x] BridgeMaker
 
 - [x] `makeBridge` 호출시 입력받은 `size`만큼 `generateRandomNumber`를 활용하여 `Bridge`의 조건을 생성한다.
 
-[ ] BridgeGame
+[x] BridgeGame
 
-- [ ] 생성시 입력받은 `size`를 기반으로 `Bridge`를 생성한다.
-- [ ] `move` 호출시 입력받은 `lane`을 생성된 `bridge`에 `cross`한다.
-- [ ] `retry` 호출시 `Bridge`를 초기화한다.
-- [ ] `isCompleted` 호출시 완료 여부를 반환한다.
+- [x] 생성시 입력받은 `size`를 기반으로 `Bridge`를 생성한다.
+- [x] `move` 호출시 입력받은 `lane`을 생성된 `bridge`에 `cross`한다.
+- [x] `retry` 호출시 `Bridge`를 초기화한다.
+- [x] `isCompleted` 호출시 완료 여부를 반환한다.
+
+[ ] 재시작 예외 처리
+
+- [ ] 재시작 코드에 `R`이나 `Q`가 아닌 값이 들어올 시 에러가 발생한다.
