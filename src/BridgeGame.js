@@ -10,16 +10,29 @@ const Stack = require('./domain/Stack/Stack.js');
 class BridgeGame {
   #bridge;
 
-  #try = 0;
+  #tryCount = 1;
 
   constructor(size) {
-    const stacks = Array.from(BridgeMaker.makeBridge(size, BridgeRandomNumberGenerator), (lane) => {
-      if (lane === Bridge.LANE_NAMES.up) {
-        return [Stack.of([HardDeck.of(), WeakDeck.of()])];
-      }
-      return [Stack.of([WeakDeck.of(), HardDeck.of()])];
-    });
+    const stacks = Array.from(
+      BridgeMaker.makeBridge(size, BridgeRandomNumberGenerator.generate),
+      (lane) =>
+        lane === Bridge.LANE_NAMES.up ? this.#createUpperStack() : this.#createLowerStack(),
+    );
     this.#bridge = Bridge.of(stacks);
+  }
+
+  #createUpperStack() {
+    return Stack.of([
+      { name: Bridge.LANE_NAMES.up, deck: HardDeck.of() },
+      { name: Bridge.LANE_NAMES.down, deck: WeakDeck.of() },
+    ]);
+  }
+
+  #createLowerStack() {
+    return Stack.of([
+      { name: Bridge.LANE_NAMES.up, deck: WeakDeck.of() },
+      { name: Bridge.LANE_NAMES.down, deck: HardDeck.of() },
+    ]);
   }
 
   static of(size) {
@@ -43,14 +56,14 @@ class BridgeGame {
    * 재시작을 위해 필요한 메서드의 반환 값(return value), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
    */
   retry() {
-    this.#try += 1;
+    this.#tryCount += 1;
     this.#bridge.init();
   }
 
   isCompleted() {
     return {
       result: this.#bridge.isCompleted(),
-      try: this.#try,
+      tryCount: this.#tryCount,
     };
   }
 }

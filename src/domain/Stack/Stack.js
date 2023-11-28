@@ -11,6 +11,7 @@ class Stack {
    * @param {{ name: string, deck: Deck }[]} lanes
    */
   constructor(lanes) {
+    console.log(lanes);
     lanes.forEach(({ name, deck }) => {
       this.#lanes[name] = deck;
     });
