@@ -1,7 +1,9 @@
 const BridgeGame = require('../BridgeGame.js');
 const InputView = require('../InputView.js');
 const OutputView = require('../OutputView.js');
+const ERRORS = require('../constants/errors.js');
 const { RETRY_COMMAND } = require('../constants/system.js');
+const ApplicationError = require('../exceptions/ApplicationError.js');
 const BridgeService = require('../service/BridgeService.js');
 
 class BridgeController {
@@ -57,12 +59,17 @@ class BridgeController {
   #processRetry(bridgeGame) {
     this.#handleError(() => {
       this.#readGameCommand((command) => {
+        this.#validateRetryCommand(command);
         if (command === RETRY_COMMAND.RETRY) {
-          this.#service.bridge.initBridge(bridgeGame);
-          this.#processGame(bridgeGame);
+          this.#processRestart(bridgeGame);
         }
       });
     });
+  }
+
+  #processRestart(bridgeGame) {
+    this.#service.bridge.initBridge(bridgeGame);
+    this.#processGame(bridgeGame);
   }
 
   #readBridgeSize(handler) {
@@ -95,6 +102,12 @@ class BridgeController {
     } catch ({ message }) {
       this.#view.output.error(message);
       return this.#handleError(action);
+    }
+  }
+
+  #validateRetryCommand(command) {
+    if (!Object.values(RETRY_COMMAND).includes(command)) {
+      throw new ApplicationError(ERRORS.invalidRetryCommand);
     }
   }
 }

@@ -32,6 +32,7 @@ class Bridge {
    */
   static ERROR = {
     invalidSize: `다리 길이는 ${Bridge.MIN_SIZE}부터 ${Bridge.MAX_SIZE} 사이의 숫자여야 합니다.`,
+    invalidLane: `${Object.values(Bridge.LANE_NAMES).join(', ')} 중 하나를 입력해주세요!`,
   };
 
   /**
@@ -66,14 +67,20 @@ class Bridge {
    * @returns {BridgeResult}
    */
   cross(lane) {
+    this.#validateCross(lane);
     const { result, stacks } = this.#stacks[this.#index].through(lane);
     this.#log.push(stacks);
     this.#index += 1;
-
     return {
       result,
       log: this.#log,
     };
+  }
+
+  #validateCross(lane) {
+    if (!Object.values(Bridge.LANE_NAMES).includes(lane)) {
+      throw new ApplicationError(Bridge.ERROR.invalidLane);
+    }
   }
 
   isCompleted() {
