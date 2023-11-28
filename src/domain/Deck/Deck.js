@@ -4,7 +4,11 @@ class Deck {
   /**
    * @protected
    */
-  state = Deck.DEFAULT_STATE;
+  _state = Deck.DEFAULT_STATE;
+
+  getState() {
+    return this._state;
+  }
 
   /**
    * @abstract

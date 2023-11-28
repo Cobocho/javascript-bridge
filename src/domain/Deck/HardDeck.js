@@ -14,9 +14,9 @@ class HardDeck extends Deck {
    * @abstract
    */
   trampled() {
-    this.state = HardDeck.TRAMPLED_STATE;
+    this._state = HardDeck.TRAMPLED_STATE;
 
-    return this.state;
+    return this._state;
   }
 }
 

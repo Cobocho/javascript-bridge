@@ -14,9 +14,9 @@ class WeakDeck extends Deck {
    * @abstract
    */
   trampled() {
-    this.state = WeakDeck.TRAMPLED_STATE;
+    this._state = WeakDeck.TRAMPLED_STATE;
 
-    return this.state;
+    return this._state;
   }
 }
 
