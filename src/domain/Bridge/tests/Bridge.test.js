@@ -39,6 +39,10 @@ describe('Bridge 테스트', () => {
           { name: Bridge.LANE_NAMES.up, deck: HardDeck.of() },
           { name: Bridge.LANE_NAMES.down, deck: WeakDeck.of() },
         ]),
+        Stack.of([
+          { name: Bridge.LANE_NAMES.up, deck: HardDeck.of() },
+          { name: Bridge.LANE_NAMES.down, deck: WeakDeck.of() },
+        ]),
       ],
       throughLanes: [Bridge.LANE_NAMES.down],
       expected: {
@@ -84,6 +88,10 @@ describe('Bridge 테스트', () => {
     },
     {
       stacks: [
+        Stack.of([
+          { name: Bridge.LANE_NAMES.up, deck: HardDeck.of() },
+          { name: Bridge.LANE_NAMES.down, deck: WeakDeck.of() },
+        ]),
         Stack.of([
           { name: Bridge.LANE_NAMES.up, deck: HardDeck.of() },
           { name: Bridge.LANE_NAMES.down, deck: WeakDeck.of() },

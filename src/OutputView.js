@@ -39,6 +39,10 @@ const OutputView = {
     Console.print(success ? MESSAGES.success : MESSAGES.failed);
     Console.print(`${MESSAGES.tryCount} ${tryCount}`);
   },
+
+  error(message) {
+    Console.print(message);
+  },
 };
 
 module.exports = OutputView;

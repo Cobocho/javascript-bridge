@@ -93,7 +93,7 @@ class BridgeController {
     try {
       return action();
     } catch ({ message }) {
-      console.error(message);
+      this.#view.output.error(message);
       return this.#handleError(action);
     }
   }

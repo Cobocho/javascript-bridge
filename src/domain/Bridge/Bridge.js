@@ -1,3 +1,5 @@
+const ApplicationError = require('../../exceptions/ApplicationError.js');
+const { isOutOfRange } = require('../../utils/validator.js');
 const Stack = require('../Stack/Stack.js');
 
 /**
@@ -16,6 +18,23 @@ class Bridge {
   };
 
   /**
+   * @readonly
+   */
+  static MIN_SIZE = 3;
+
+  /**
+   * @readonly
+   */
+  static MAX_SIZE = 20;
+
+  /**
+   * @readonly
+   */
+  static ERROR = {
+    invalidSize: `다리 길이는 ${Bridge.MIN_SIZE}부터 ${Bridge.MAX_SIZE} 사이의 숫자여야 합니다.`,
+  };
+
+  /**
    * @type {Stack[]}
    */
   #stacks;
@@ -28,11 +47,18 @@ class Bridge {
   #log = [];
 
   constructor(stacks) {
+    this.#validate(stacks);
     this.#stacks = stacks;
   }
 
   static of(stacks) {
     return new Bridge(stacks);
+  }
+
+  #validate(stacks) {
+    if (isOutOfRange(stacks.length, { min: Bridge.MIN_SIZE, max: Bridge.MAX_SIZE })) {
+      throw new ApplicationError(Bridge.ERROR.invalidSize);
+    }
   }
 
   /**
