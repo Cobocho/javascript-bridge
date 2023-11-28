@@ -32,6 +32,10 @@ class Bridge {
   isCompleted() {
     return this.#stacks.length === this.#index;
   }
+
+  init() {
+    this.#stacks.forEach((stack) => stack.init());
+  }
 }
 
 module.exports = Bridge;

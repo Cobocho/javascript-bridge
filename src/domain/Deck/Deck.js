@@ -14,6 +14,10 @@ class Deck {
    * @abstract
    */
   trampled() {}
+
+  init() {
+    this._state = Deck.DEFAULT_STATE;
+  }
 }
 
 module.exports = Deck;

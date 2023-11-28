@@ -29,6 +29,12 @@ class Stack {
       stacks,
     };
   }
+
+  init() {
+    Object.keys(this.#lanes).forEach((lane) => {
+      this.#lanes[lane].init();
+    });
+  }
 }
 
 module.exports = Stack;
