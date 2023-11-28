@@ -1,5 +1,11 @@
 const Stack = require('../Stack/Stack.js');
 
+/**
+ * @typedef BridgeResult
+ * @property {boolean} result
+ * @property {string[]} log
+ */
+
 class Bridge {
   /**
    * @readonly
@@ -16,6 +22,9 @@ class Bridge {
 
   #index = 0;
 
+  /**
+   * @type {string[]}
+   */
   #log = [];
 
   constructor(stacks) {
@@ -26,6 +35,10 @@ class Bridge {
     return new Bridge(stacks);
   }
 
+  /**
+   * @param {string} lane
+   * @returns {BridgeResult}
+   */
   cross(lane) {
     const { result, stacks } = this.#stacks[this.#index].through(lane);
     this.#log.push(stacks);
